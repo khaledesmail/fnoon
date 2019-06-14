@@ -1,0 +1,100 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (message) { %>
+    <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (reservation) { %>
+    <form class="add-reservation-form" action="" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="first-name">اسم الطالب</label>
+                <input type="text" class="form-control" name="student_name" id="first-name"
+                    value="<%= reservation.student_name %>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="last-name">رقم الطالب</label>
+                <input type="text" class="form-control" name="student_phone" id="last-name"
+                    value="<%= reservation.student_phone %>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="username">اسم المدرس</label>
+                <input type="text" class="form-control" name="Teacher_name" id="username"
+                    value="<%= reservation.Teacher_name %>" required disabled title="Teacher_name can't be changed">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="stage">المرحلة</label>
+                <input type="text" class="form-control" name="Stage" id="stage" value="<%= reservation.Stage %>" required
+                    disabled title="Stage can't be changed">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="year">السنة</label>
+                <input type="text" class="form-control" name="year" id="year" value="<%= reservation.year %>" required
+                    disabled title="year can't be changed">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Group">المجموعة</label>
+                <input type="text" class="form-control" name="Group" id="Group" value="<%= reservation.Group %>" required
+                    disabled title="Group can't be changed">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="type">النوع</label>
+                <input type="text" class="form-control" name="type" id="type" value="<%= reservation.type %>" required
+                    disabled title="type can't be changed">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="amount">المبلغ المدفوع</label>
+                <input type="number" step="0.001" min="0" max="<%= reservation.Price %>" class="form-control" name="amount" id="amount" value="<%= reservation.amount %>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="date_start">موعد أول حصة</label>
+                <input type="text" class="form-control" name="date_start" id="date_start" value="<%= groupInfo.date_start %>" required
+                    disabled title="date_start can't be changed">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-check form-group col-md-4">
+
+                <input type="checkbox" id="myCheckConfirm" name="confirm" value=<%= reservation.confirm %>
+                    <%= reservation.confirm ? "checked" : "" %> hidden />
+
+                <!-- <button type="button" onclick="check()">Check Checkbox</button>
+                    <button type="button" onclick="uncheck()">Uncheck Checkbox</button> -->
+                <button type="button" class="btn btn-sm btn-success" <%= reservation.confirm !== 0 ? "disabled" : "" %>
+                    id="confirm" onclick="check()">تأكيد الحجز</button>
+                <button type="button" class="btn btn-sm btn-danger" <%= reservation.confirm === 0 ? "disabled" : "" %>
+                    id="unconfirm" onclick="uncheck()">ألغاء
+                    تأكيد الحجز</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success float-right">تعديل</button>
+    </form>
+    <% } else { %>
+    <p class="text-center">لا يوجد حجز بهذا الرقم </p>
+    <p class="text-center">القائمة  <a href="/profile">من هنا</a></p>
+
+    <% } %>
+</div>
+</div>
+</body>
+
+<script>
+    function check() {
+        document.getElementById("myCheckConfirm").checked = true;
+        document.getElementById("myCheckConfirm").value = 1;
+        document.getElementById("confirm").disabled = true;
+        document.getElementById("unconfirm").disabled = false;
+
+    }
+
+    function uncheck() {
+        document.getElementById("myCheckConfirm").checked = false;
+        document.getElementById("myCheckConfirm").value = 0;
+        document.getElementById("confirm").disabled = false;
+        document.getElementById("unconfirm").disabled = true;
+    }
+</script>
+
+</html>

@@ -1,0 +1,168 @@
+<% include partials/header.ejs %>
+
+
+<style>
+    label {
+        width: 100%;
+        text-align: right;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        .printme,
+        .printme * {
+            visibility: visible;
+        }
+
+        .printme {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .printme,
+        .printme:last-child {
+            page-break-after: avoid;
+        }
+
+        .display-none-on,
+        .display-none-on * {
+            display: none !important;
+        }
+
+        html,
+        body {
+            height: auto;
+            font-size: 22pt;
+            /* changing to 10pt has no impact */
+        }
+
+    }
+</style>
+<div class="d-flex" style="flex-direction: column;align-items: center;">
+    <div class="" id="printableArea" style="align-self: center; font-size: 22pt; width:12cm;">
+        <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+
+        <% if (reservation) { %>
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="first-name">اسم الطالب</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="student_name" id="first-name"
+                    value="<%= reservation.student_name %>" required disabled title="student_name can't be changed">
+            </div>
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="last-name">رقم الطالب</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="student_phone" id="last-name"
+                    value="<%= reservation.student_phone %>" required disabled title="student_phone can't be changed">
+            </div>
+        </div>
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="username">اسم المدرس</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="Teacher_name" id="username"
+                    value="<%= reservation.Teacher_name %>" required disabled title="Teacher_name can't be changed">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="stage">المرحلة</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="Stage" id="stage" value="<%= reservation.Stage %>"
+                    required disabled title="Stage can't be changed">
+            </div>
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="year">السنة</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="year" id="year" value="<%= reservation.year %>" required
+                    disabled title="year can't be changed">
+            </div>
+        </div>
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="type">النوع</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="type" id="type" value="<%= reservation.type %>" required
+                    disabled title="Username can't be changed">
+            </div>
+        </div>
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="Group">المجموعة</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="Group" id="Group" value="<%= reservation.Group %>"
+                    required disabled title="Group can't be changed">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="date_start">موعد أول حصة</label>
+                <input style="font-size: 22pt;" type="text" class="form-control" name="date_start" id="date_start"
+                    value="<%= groupInfo.date_start %>" required disabled title="date_start can't be changed">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="Price">مبلغ الحجز</label>
+                <input style="font-size: 22pt;" type="number" step="0.001" class="form-control" name="Price" id="Price"
+                    value="<%= reservation.Price %>" required disabled title="Price can't be changed">
+            </div>
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="amount">المبلغ المدفوع</label>
+                <input style="font-size: 22pt;" type="number" step="0.001" class="form-control" name="amount" id="amount"
+                    value="<%= reservation.amount %>" required required disabled title="amount can't be changed">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div style="flex: 1 0 50%; padding: 5px 10px">
+                <label for="amount">المبلغ المتبقي</label>
+                <input style="font-size: 22pt;" type="number" step="0.001" class="form-control" name="amount" id="amount"
+                    value="<%= reservation.Price - reservation.amount%>" required required disabled
+                    title="amount can't be changed">
+            </div>
+        </div>
+
+        <% if(reservation.confirm !== 0){ %>
+        <div
+            style="flex: 1 0 100%;margin-top: 10px;padding: 15px 0px;border-radius: 4px; background-color: #e9ecef ;border: 1px double #c3c3c3;">
+            <label style="font-weight: bold;width: 100%; text-align: center; font-size: 200%;">تم
+                تاكيد
+                الحجز</label>
+            <% } else{ %>
+            <% } %>
+        </div>
+        <div>
+
+            <img style="flex: 1 0 100%;margin-top: 10px;" src="/assets/img/fnoon.jpg"> </div>
+    </div>
+    <div class="container">
+        <input type="button" style="width:100px" class="btn btn-success float-right" onclick="printDiv('printableArea')"
+            value="Print" />
+        <img style="padding:5px;" class="float-right" src="/assets/img/printer.png">
+    </div>
+
+    <% } else { %>
+    <p class="text-center">لا يوجد حجز بهذا الرقم </p>
+    <p class="text-center">القائمة <a href="/profile">من هنا</a></p>
+    <% } %>
+</div>
+
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>

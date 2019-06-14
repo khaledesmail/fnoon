@@ -1,0 +1,38 @@
+<% include partials/header2.ejs %>
+
+<script>
+    window.history.pushState("", "", '/reservation');
+</script>
+<div class="container">
+    <% if (message != '') { %>
+    <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+    <form class="add-reservation-form" action="" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="name" id="first-name" placeholder="الاسم" required>
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="number" class="form-control" name="number" id="number" placeholder="رقم الهاتف" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <select id="group" name="group" class="form-control" required>
+                    <!-- <optgroup label="Select Table"> -->
+                    <option value="">اختر المجموعة</option>
+                    <% groups.forEach((g, index) => { %>
+                    <option value="<%= g.group_name %>"><%= g.group_name %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right">تسجيل</button>
+    </form>
+</div>
+</div>
+</body>
+
+</html>

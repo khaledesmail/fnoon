@@ -1,0 +1,28 @@
+<% include partials/header2.ejs %>
+
+<script>
+        window.history.pushState("", "", '/stage');
+</script>
+<div class="container">
+    <% if (message != '') { %>
+    <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+    <form class="add-stage-form" action="" method="post" enctype="multipart/form-data">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <select id="position" name="position" class="form-control" required>
+                    <option value="">اختر المرحلة</option>
+                    <option value="ابتدائي">ابتدائي</option>
+                    <option value="اعدادي">اعدادي</option>
+                    <option value="ثانوي">ثانوي</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right">التالي</button>
+    </form>
+</div>
+</div>
+</body>
+
+</html>
