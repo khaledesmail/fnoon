@@ -4,6 +4,7 @@
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "1.18.3",
+    "buffer-crc32": "^0.2.13",
     "connect-flash": "0.1.1",
     "cookie-parser": "1.0.0",
     "ejs": "2.6.1",
@@ -18,7 +19,8 @@
     "passport": "0.1.17",
     "passport-local": "0.1.6",
     "req-flash": "0.0.3",
-    "serve-favicon": "2.5.0"
+    "serve-favicon": "2.5.0",
+    "uid2": "0.0.3"
   },
   "engines": {
     "node": "10.19.0",
