@@ -19,5 +19,9 @@
     "passport-local": "0.1.6",
     "req-flash": "0.0.3",
     "serve-favicon": "2.5.0"
+  },
+  "engines": {
+    "node": "10.19.0",
+    "npm": "6.13.4"
   }
 }
