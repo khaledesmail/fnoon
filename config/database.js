@@ -1,7 +1,7 @@
 // config/database.js
 module.exports = {
   connection: {
-    host: '68.66.216.59',
+    host: 'mano-ad.com',
     user: 'mano',
     password: 'sdfdsfdf565tfe'
    
